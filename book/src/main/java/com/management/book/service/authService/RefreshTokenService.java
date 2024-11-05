@@ -7,7 +7,6 @@ import com.management.book.entity.User;
 import com.management.book.exception.InvalidRefreshToken;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
@@ -37,7 +36,7 @@ public class RefreshTokenService {
                 .token(UUID.randomUUID().toString())
                 .expiry(Instant.now().plusMillis(600000))
                 .build();
-
+        refreshTokenDao.deleteTokenByUser(user.get());
         return refreshTokenDao.save(refreshToken);
     }
 
@@ -63,6 +62,6 @@ public class RefreshTokenService {
         if(user.isEmpty()) {
             return;
         }
-        refreshTokenDao.deleteTokenByUserId(user.get());
+        refreshTokenDao.deleteTokenByUser(user.get());
     }
 }

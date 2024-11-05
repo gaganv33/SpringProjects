@@ -50,7 +50,7 @@ public class RefreshTokenDaoImpl implements RefreshTokenDao {
     }
 
     @Override
-    public void deleteTokenByUserId(User user) {
+    public void deleteTokenByUser(User user) {
         Optional<RefreshToken> refreshToken = findByUser(user);
         if(refreshToken.isEmpty()) {
             return;

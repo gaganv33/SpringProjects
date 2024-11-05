@@ -9,6 +9,6 @@ public interface RefreshTokenDao {
     Optional<RefreshToken> findByToken(String token);
     RefreshToken save(RefreshToken refreshToken);
     void deleteByToken(String token);
-    void deleteTokenByUserId(User user);
+    void deleteTokenByUser(User user);
     Optional<RefreshToken> findByUser(User user);
 }
